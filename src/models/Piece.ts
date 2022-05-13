@@ -1,10 +1,16 @@
-import { Color, File, Rank } from "../utils/types";
+import { Color, File, PieceStatus, Rank } from "../utils/types";
 import Position from "./Position";
 
 export default abstract class Piece {
     protected position!: Position;
 
-    constructor(private readonly color: Color, private file: File, private rank: Rank) {
+    constructor(
+        private readonly color: Color,
+        private file: File,
+        private rank: Rank,
+        private id: string,
+        private name: string,
+        private status: PieceStatus) {
         this.position = new Position(file, rank);
     }
 
@@ -13,13 +19,11 @@ export default abstract class Piece {
     }
 
     isForward(position: Position, module: number = 8): boolean {
-        // let diffModule = Math.abs(position.getRank() - this.position.getRank());
-        return position.getFile() == this.position.getFile();// && (diffModule > 0 && diffModule <= module);
+        return position.getFile() == this.position.getFile();
     }
 
     isSideward(position: Position, module: number = 8): boolean {
-        // let diffModule = Math.abs(position.getFile() - this.position.getFile());
-        return position.getRank() == this.position.getRank();// && (diffModule > 0 && diffModule <= module);
+        return position.getRank() == this.position.getRank();
     }
 
     ismodule(position: Position, module: number) {
