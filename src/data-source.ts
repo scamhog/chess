@@ -4,10 +4,11 @@ import { User } from "./entity/User"
 
 export const AppDataSource = new DataSource({
     type: "mongodb",
-    database: "test",
+    host: "localhost",
+    database: "chess",
     synchronize: true,
     logging: false,
-    entities: [User],
+    entities: ["src/entity/*.ts"],
     migrations: [],
     subscribers: [],
 })
