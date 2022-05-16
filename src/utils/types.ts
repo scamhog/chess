@@ -4,8 +4,8 @@ export type Color = 'Black' | 'White';
 export type GameStatus = "ReadyToPlay" | "Playing" | "Check" | "Checkmate";
 export type PieceStatus = "FirstMove" | "Captured" | "Check" | "OnBoard";
 export type ResponseEntity = {
-    data: Object,
+    data: Object | null,
     message: string,
-    error: string,
+    error: string | null,
     code: number
 }

@@ -7,17 +7,21 @@ export default class Game {
     constructor(
         private piecesPositions: string[][],
         private pieces:Array<Piece>,
-        private captured:Array<Piece>,
+        private piecesCaptured:Array<Piece>,
         private turn: Color,
         private status: GameStatus
     ) { }
 
     getCaptured():Array<Piece>{
-        return this.captured;
+        return this.piecesCaptured;
     }
 
     getPiecesPositions(): string[][] {
         return this.piecesPositions;
+    }
+
+    getPieces(): Piece[] {
+        return this.pieces;
     }
 
     getTurn(): Color {
