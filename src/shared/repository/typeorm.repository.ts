@@ -1,5 +1,5 @@
 import { injectable, unmanaged } from "inversify";
-import { DeleteResult, Repository } from "typeorm";
+import { DeleteResult, ObjectID, Repository, UpdateResult } from "typeorm";
 import CrudRepository from "./crud.repository.interface";
 
 @injectable()
@@ -15,12 +15,12 @@ export abstract class TypeormRepository<EntityType> implements CrudRepository<En
         return await this.repository.save(entity);
     }
 
-    list(): Promise<EntityType[]> {
-        return this.repository.find();
+    async update(entity: EntityType, id: ObjectID): Promise<UpdateResult> {
+        return await this.repository.update(id, entity);
     }
 
-    async findById(id: string): Promise<EntityType | null> {
-        return this.repository.findOne({ id: id } as any);
+    list(): Promise<EntityType[]> {
+        return this.repository.find();
     }
 
     deleteById(id: string): Promise<DeleteResult> {

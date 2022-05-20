@@ -1,4 +1,4 @@
-import { initialPositions } from "../utils/constants";
+import { initialPieces, initialPositions } from "../utils/constants";
 import { Color, GameStatus } from "../utils/types";
 import Piece from "./Piece";
 
@@ -36,6 +36,7 @@ export default class Game {
         this.status = "ReadyToPlay";
         this.turn = "White";
         this.piecesPositions = initialPositions;
+        this.pieces = initialPieces;
         return true;
     }
 

@@ -8,16 +8,16 @@ export class ComonService<EntityType, RepositoryType extends CrudRepositoryInter
 
     protected repository: RepositoryType;
 
-    constructor(repository: RepositoryType){
+    constructor(repository: RepositoryType) {
         this.repository = repository;
+    }
+
+    update(entity: EntityType, id: any): Promise<EntityType> {
+        return this.repository.update(entity, id);
     }
 
     findAll(): Promise<EntityType[]> {
         return this.repository.list();
-    }
-
-    finById(id: string): Promise<EntityType | null> {
-        return this.repository.findById(id);
     }
 
     register(entity: EntityType): Promise<EntityType> {

@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import './controller/game.controller';
 import { Application, Request, Response, NextFunction } from 'express';
 import { Container } from 'inversify';
@@ -19,10 +18,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
-});
-
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
-    res.send('Hello');
 });
 
 export default app;

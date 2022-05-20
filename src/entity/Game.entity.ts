@@ -6,7 +6,7 @@ import { Color, GameStatus } from "../utils/types";
 export class GameEntity {
 
     @ObjectIdColumn()
-    id!: ObjectID;
+    id!: ObjectID
 
     @Column()
     piecesPositions!: string[][];
