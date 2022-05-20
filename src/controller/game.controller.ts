@@ -1,10 +1,12 @@
 import * as express from "express";
 import { inject } from "inversify";
-import { controller, httpGet, response, httpPost, requestBody } from "inversify-express-utils";
+import { controller, httpGet, response, httpPost, request, requestBody } from "inversify-express-utils";
 import { GameEntity } from "../entity/Game.entity";
 import Game from "../model/Game";
+import Position from "../model/Position";
 import { GameService } from "../service/game.service";
 import { GameLibrary } from "../utils/game.library";
+import { Movement } from "../utils/types";
 
 @controller('/game')
 export class GameController {
@@ -44,7 +46,16 @@ export class GameController {
     }
 
     @httpPost('/move-piece')
-    movePiece(@requestBody() body: express.Request, @response() response: express.Response) {
-        console.log(body);
+    movePiece(@requestBody() movement: Movement, @response() response: express.Response) {
+        return this.service.findAll()
+            .then(gamesResponse => {
+                const gameEntity = gamesResponse[0];
+                const gameModel = GameLibrary.convertEntityToModel(gameEntity);
+                const pieceCanMove = GameLibrary.verifyMovement(gameModel.getPieces(), movement, gameModel.getPiecesPositions());
+                return response.status(200).json(pieceCanMove);
+            })
+            .catch(error => {
+                return response.status(500).json("INTERNAL SERVER ERROR");
+            });
     }
 }

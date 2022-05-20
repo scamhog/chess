@@ -1,4 +1,3 @@
-import Piece from "../model/Piece";
 import Position from "../model/Position";
 
 export type File = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H';
@@ -14,6 +13,6 @@ export type ResponseEntity = {
 }
 export type Movement = {
     color: Color,
-    piece: Piece,
+    pieceId: string,
     position: Position,
 }
