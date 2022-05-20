@@ -1,7 +1,8 @@
+import { IPiece } from "../shared/interface/Piece.interface";
 import { Color, File, PieceStatus, Rank } from "../utils/types";
 import Position from "./Position";
 
-export default abstract class Piece {
+export default abstract class Piece implements IPiece {
     protected position!: Position;
 
     constructor(
